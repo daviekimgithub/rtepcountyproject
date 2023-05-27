@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Ctravels.apps.CtravelsConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

@@ -23,9 +23,21 @@ class Employees(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'employees'
+
+    def __str__(self):
+        return f'{self.first_name}  {self.last_name}  {self.mobile_no}  {self.id_no}  {self.email}'
+
 
 class Departments(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
+
+    class Meta:
+        db_table = 'departments'
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Vehicles(models.Model):
@@ -40,10 +52,22 @@ class Vehicles(models.Model):
     last_service_date = models.DateField()
     department = models.ForeignKey(Departments, on_delete=models.CASCADE)
 
+    class Meta:
+        db_table = 'vehicles'
+
+    def __str__(self):
+        return f'{self.number_plate}  {self.type}  {self.model}  {self.department}'
+
 
 class Driver(models.Model):
     employee_id = models.ForeignKey(Employees, primary_key=True, on_delete=models.CASCADE)
     vehicle_id = models.ForeignKey(Vehicles, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'driver'
+
+    def __str__(self):
+        return f'{self.employee_id}  {self.vehicle_id}'
 
 
 class Mechanics(models.Model):
@@ -56,6 +80,12 @@ class Mechanics(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'mechanics'
+
+    def __str__(self):
+        return f'{self.employee_id}  {self.first_name},  {self.last_name},  {self.mobile_no}'
+
 
 class Repair(models.Model):
     vehicle_id = models.ForeignKey(Vehicles, on_delete=models.CASCADE)
@@ -67,6 +97,13 @@ class Repair(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'repairs'
+
+    def __str__(self):
+        return f'{self.vehicle_id}  {self.date}  {self.cost}  {self.status}'
+
+
 class Maintenance(models.Model):
     vehicle_id = models.ForeignKey(Vehicles, on_delete=models.CASCADE)
     type = models.CharField(max_length=100)
@@ -76,6 +113,12 @@ class Maintenance(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'maintenance'
+
+    def __str__(self):
+        return f'{self.vehicle_id}  {self.type}  {self.date}  {self.cost}  {self.status}'
+
 
 class FuelStations(models.Model):
     name = models.CharField(max_length=100)
@@ -83,6 +126,12 @@ class FuelStations(models.Model):
     fuel_received = models.FloatField()
     fuel_sold = models.FloatField()
     fuel_remaining = models.FloatField()
+
+    class Meta:
+        db_table = 'fuel stations'
+
+    def __str__(self):
+        return f'{self.name}  {self.fuel_remaining}'
 
 
 class FuelVendors(models.Model):
@@ -94,6 +143,12 @@ class FuelVendors(models.Model):
     total_fuel = models.FloatField(default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'fuel vendors'
+
+    def __str__(self):
+        return f'{self.name}  {self.fuel_station}  {self.unit_price}'
 
 
 class StationFuelRefill(models.Model):
@@ -107,6 +162,12 @@ class StationFuelRefill(models.Model):
     unit_price = models.FloatField(default=0)
     buying_cost = models.FloatField(default=0)
 
+    class Meta:
+        db_table = 'station fuel refill'
+
+    def __str__(self):
+        return f'{self.name}  {self.received_by}  {self.unit_price}  {self.buying_cost}'
+
 
 class VehicleFuelRefill(models.Model):
     date = models.DateField()
@@ -119,6 +180,12 @@ class VehicleFuelRefill(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
 
+    class Meta:
+        db_table = 'vehicles fuel refill'
+
+    def __str__(self):
+        return f'{self.first_name}'
+
 
 class DriversFuelOrders(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
@@ -128,6 +195,12 @@ class DriversFuelOrders(models.Model):
     description = models.TextField(max_length=255)
     status = models.BooleanField(default=False)
 
+    class Meta:
+        db_table = 'drivers fuel orders'
+
+    def __str__(self):
+        return f'{self.created_at}  {self.vehicle}  {self.status}  {self.description}'
+
 
 class Notifications(models.Model):
     employee_id = models.ForeignKey(Employees, on_delete=models.CASCADE)
@@ -135,3 +208,9 @@ class Notifications(models.Model):
     notification_message = models.TextField(max_length=255)
     is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'notifications'
+
+    def __str__(self):
+        return f'{self.notification_message}  {self.notification_type}  {self.is_read}  {self.created_at}  {self.employee_id}'
