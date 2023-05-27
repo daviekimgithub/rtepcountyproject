@@ -1,20 +1,20 @@
 from django.contrib import admin
-from .models import Employees, Driver, Mechanics, Departments, Vehicles, Repair, Maintenance
-from .models import FuelVendors, FuelStations
-from .models import StationFuelRefill, DriversFuelOrders, VehicleFuelRefill, Notifications
+from .models import Employee, Driver, Mechanic, Department, Vehicle, Repair, Maintenance
+from .models import FuelVendor, FuelStation
+from .models import StationFuelRefill, DriversFuelOrder, VehicleFuelRefill, Notification
 
 
 # Register your models here.
-admin.site.register(Employees)
+admin.site.register(Employee)
 admin.site.register(Driver)
-admin.site.register(Mechanics)
-admin.site.register(Departments)
-admin.site.register(Vehicles)
+admin.site.register(Mechanic)
+admin.site.register(Department)
+admin.site.register(Vehicle)
 admin.site.register(Repair)
 admin.site.register(Maintenance)
-admin.site.register(FuelVendors)
-admin.site.register(FuelStations)
+admin.site.register(FuelVendor)
+admin.site.register(FuelStation)
 admin.site.register(StationFuelRefill)
-admin.site.register(DriversFuelOrders)
+admin.site.register(DriversFuelOrder)
 admin.site.register(VehicleFuelRefill)
-admin.site.register(Notifications)
+admin.site.register(Notification)

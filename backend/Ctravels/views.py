@@ -1,8 +1,8 @@
 from rest_framework import generics
 
-from .models import Employees, Driver, Mechanics, Departments, Vehicles, Repair, Maintenance
-from .models import FuelVendors, FuelStations
-from .models import StationFuelRefill, DriversFuelOrders, VehicleFuelRefill, Notifications
+from .models import Employee, Driver, Mechanic, Department, Vehicle, Repair, Maintenance
+from .models import FuelVendor, FuelStation
+from .models import StationFuelRefill, DriversFuelOrder, VehicleFuelRefill, Notification
 from .serializers import (
     EmployeeSerializer, DriverSerializer, MechanicSerializer, DepartmentSerializer,
     VehicleSerializer, RepairSerializer, MaintenanceSerializer, FuelVendorSerializer,
@@ -12,12 +12,12 @@ from .serializers import (
 
 
 class EmployeesList(generics.ListCreateAPIView):
-    queryset = Employees.objects.all()
+    queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
 
 class EmployeesDetail(generics.RetrieveUpdateAPIView):
-    queryset = Employees.objects.all()
+    queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
 
@@ -32,32 +32,32 @@ class DriversDetail(generics.RetrieveUpdateAPIView):
 
 
 class MechanicsList(generics.ListCreateAPIView):
-    queryset = Mechanics.objects.all()
+    queryset = Mechanic.objects.all()
     serializer_class = MechanicSerializer
 
 
 class MechanicsDetail(generics.RetrieveUpdateAPIView):
-    queryset = Mechanics.objects.all()
+    queryset = Mechanic.objects.all()
     serializer_class = MechanicSerializer
 
 
 class DepartmentsList(generics.ListCreateAPIView):
-    queryset = Departments.objects.all()
+    queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
 
 
 class DepartmentsDetail(generics.RetrieveUpdateAPIView):
-    queryset = Departments.objects.all()
+    queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
 
 
 class VehiclesList(generics.ListCreateAPIView):
-    queryset = Vehicles.objects.all()
+    queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
 
 
 class VehiclesDetail(generics.RetrieveUpdateAPIView):
-    queryset = Vehicles.objects.all()
+    queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
 
 
@@ -82,22 +82,22 @@ class MaintenanceDetail(generics.RetrieveUpdateAPIView):
 
 
 class FuelVendorsList(generics.ListCreateAPIView):
-    queryset = FuelVendors.objects.all()
+    queryset = FuelVendor.objects.all()
     serializer_class = FuelVendorSerializer
 
 
 class FuelVendorsDetail(generics.RetrieveUpdateAPIView):
-    queryset = FuelVendors.objects.all()
+    queryset = FuelVendor.objects.all()
     serializer_class = FuelVendorSerializer
 
 
 class FuelStationsList(generics.ListCreateAPIView):
-    queryset = FuelStations.objects.all()
+    queryset = FuelStation.objects.all()
     serializer_class = FuelStationSerializer
 
 
 class FuelStationsDetail(generics.RetrieveUpdateAPIView):
-    queryset = FuelStations.objects.all()
+    queryset = FuelStation.objects.all()
     serializer_class = FuelStationSerializer
 
 
@@ -112,12 +112,12 @@ class StationFuelRefillDetail(generics.RetrieveUpdateAPIView):
 
 
 class DriversFuelOrdersList(generics.ListCreateAPIView):
-    queryset = DriversFuelOrders.objects.all()
+    queryset = DriversFuelOrder.objects.all()
     serializer_class = DriverFuelOrderSerializer
 
 
 class DriversFuelOrdersDetail(generics.RetrieveUpdateAPIView):
-    queryset = DriversFuelOrders.objects.all()
+    queryset = DriversFuelOrder.objects.all()
     serializer_class = DriverFuelOrderSerializer
 
 
@@ -132,10 +132,10 @@ class VehicleFuelRefillDetail(generics.RetrieveUpdateAPIView):
 
 
 class NotificationsList(generics.ListCreateAPIView):
-    queryset = Notifications.objects.all()
+    queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
 
 
 class NotificationsDetail(generics.RetrieveUpdateAPIView):
-    queryset = Notifications.objects.all()
+    queryset = Notification.objects.all()
     serializer_class = NotificationSerializer

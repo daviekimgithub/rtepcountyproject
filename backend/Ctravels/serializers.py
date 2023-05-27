@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import Employees, Driver, Mechanics, Departments, Vehicles, Repair, Maintenance
-from .models import FuelVendors, FuelStations
-from .models import StationFuelRefill, DriversFuelOrders, VehicleFuelRefill, Notifications
+from .models import Employee, Driver, Mechanic, Department, Vehicle, Repair, Maintenance
+from .models import FuelVendor, FuelStation
+from .models import StationFuelRefill, DriversFuelOrder, VehicleFuelRefill, Notification
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Employees
+        model = Employee
         fields = (
             'pk',
             'id_no',
@@ -29,13 +29,13 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Departments
-        fields = ('pk', 'name')
+        model = Department
+        fields = ('pk', 'name', 'created_at', 'updated_at')
 
 
 class VehicleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Vehicles
+        model = Vehicle
         fields = (
             'number_plate',
             'type',
@@ -47,6 +47,8 @@ class VehicleSerializer(serializers.ModelSerializer):
             'current_millage',
             'last_service_date',
             'department',
+            'created_at',
+            'updated_at',
         )
 
 
@@ -57,12 +59,14 @@ class DriverSerializer(serializers.ModelSerializer):
             'pk',
             'employee_id',
             'vehicle_id',
+            'created_at',
+            'updated_at',
         )
 
 
 class MechanicSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Mechanics
+        model = Mechanic
         fields = (
             'pk',
             'employee_id',
@@ -71,8 +75,8 @@ class MechanicSerializer(serializers.ModelSerializer):
             'mobile_no',
             'gender',
             'Address',
-            'created_on',
-            'updated_on',
+            'created_at',
+            'updated_at',
         )
 
 
@@ -86,8 +90,8 @@ class RepairSerializer(serializers.ModelSerializer):
             'cost',
             'status',
             'mechanic_id',
-            'created_on',
-            'updated_on',
+            'created_at',
+            'updated_at',
         )
 
 
@@ -100,26 +104,28 @@ class MaintenanceSerializer(serializers.ModelSerializer):
             'date',
             'cost',
             'status',
-            'created_on',
-            'updated_on',
+            'created_at',
+            'updated_at',
         )
 
 
 class FuelStationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FuelStations
+        model = FuelStation
         fields = (
             'name',
             'description',
             'fuel_received',
             'fuel_sold',
             'fuel_remaining',
+            'created_at',
+            'updated_at',
         )
 
 
 class FuelVendorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FuelVendors
+        model = FuelVendor
         fields = (
             'employee_id',
             'fuel_station',
@@ -127,8 +133,8 @@ class FuelVendorSerializer(serializers.ModelSerializer):
             'contact_info',
             'unit_price',
             'total_fuel',
-            'created_on',
-            'updated_on',
+            'created_at',
+            'updated_at',
         )
 
 
@@ -145,6 +151,8 @@ class StationFuelRefillSerializer(serializers.ModelSerializer):
             'received_by',
             'unit_price',
             'buying_cost',
+            'created_at',
+            'updated_at',
         )
 
 
@@ -161,29 +169,32 @@ class VehicleFuelRefillSerializer(serializers.ModelSerializer):
             'issued_by',
             'driver',
             'status',
+            'created_at',
+            'updated_at',
         )
 
 
 class DriverFuelOrderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DriversFuelOrders
+        model = DriversFuelOrder
         fields = (
-            'created_on',
-            'updated_on',
             'driver',
             'vehicle',
             'description',
             'status',
+            'created_at',
+            'updated_at',
         )
 
 
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Notifications
+        model = Notification
         fields = (
             'employee_id',
             'notification_type',
             'notification_message',
             'is_read',
             'created_at',
+            'updated_at',
         )
